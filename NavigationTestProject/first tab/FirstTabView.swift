@@ -2,14 +2,14 @@
 //  FirstTabView.swift
 //  NavigationTestProject
 //
-//  Created by Sunny Singh on 30.06.21.
-//
 
 import SwiftUI
 
 struct FirstTabView: View {
     
-    @State private var firstDetailIsShown: Bool = false
+//    @State private var firstDetailIsShown: Bool = false
+    
+    @EnvironmentObject private var stateManager: StateManager
     
     var body: some View {
         NavigationView {
@@ -18,7 +18,7 @@ struct FirstTabView: View {
                 
                 NavigationLink(
                     destination: FirstDetailView(),
-                    isActive: $firstDetailIsShown,
+                    isActive: $stateManager.firstDetailIsShown,
                     label: {
                         Text("Go To Detail")
                     }
@@ -33,5 +33,6 @@ struct FirstTabView: View {
 struct FirstTabView_Previews: PreviewProvider {
     static var previews: some View {
         FirstTabView()
+            .environmentObject(StateManager())
     }
 }

@@ -2,16 +2,14 @@
 //  EmojiView.swift
 //  NavigationTestProject
 //
-//  Created by Sunny Singh on 30.06.21.
-//
 
 import SwiftUI
 
 struct EmojiView: View {
+
+    @EnvironmentObject private var stateManager: StateManager
     
     let item: String
-    
-    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         
@@ -34,7 +32,8 @@ struct EmojiView: View {
             })
             
             Button(action: {
-                presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
+                stateManager.selectedItem = nil
             }, label: {
                 Text("Go Back")
             })
@@ -44,6 +43,6 @@ struct EmojiView: View {
 
 struct EmojiView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiView(item: "⚡️")
+        EmojiView(item: "⚡️", selectedEmoji: .constant(""))
     }
 }

@@ -2,34 +2,32 @@
 //  SecondTabView.swift
 //  NavigationTestProject
 //
-//  Created by Sunny Singh on 30.06.21.
-//
 
 import SwiftUI
 
 struct SecondTabView: View {
     
-    @State private var isPresentingOverlay: Bool = false
+    @EnvironmentObject private var stateManager: StateManager
     
     var body: some View {
         VStack {
             Text("Second Tab View")
             
             Button(action: {
-                isPresentingOverlay.toggle()
+                stateManager.isPresentingOverlay.toggle()
             }, label: {
                 VStack{
                     Text("Show Overlay")
                 }
             })
             .fullScreenCover(
-                isPresented: $isPresentingOverlay,
+                isPresented: $stateManager.isPresentingOverlay,
                 content: {
                     VStack {
                         Text("Test")
                         
                         Button(action: {
-                            isPresentingOverlay = false
+                            stateManager.isPresentingOverlay = false
                         }, label: {
                             VStack{
                                 Text("done")
@@ -46,5 +44,6 @@ struct SecondTabView: View {
 struct SecondTabView_Previews: PreviewProvider {
     static var previews: some View {
         SecondTabView()
+            .environmentObject(StateManager())
     }
 }

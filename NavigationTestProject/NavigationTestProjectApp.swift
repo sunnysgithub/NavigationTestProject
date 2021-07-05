@@ -2,16 +2,18 @@
 //  NavigationTestProjectApp.swift
 //  NavigationTestProject
 //
-//  Created by Sunny Singh on 30.06.21.
-//
 
 import SwiftUI
 
 @main
 struct NavigationTestProjectApp: App {
+    
+    @StateObject var stateManager = StateManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(stateManager)
         }
     }
 }

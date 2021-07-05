@@ -2,17 +2,17 @@
 //  ContentView.swift
 //  NavigationTestProject
 //
-//  Created by Sunny Singh on 30.06.21.
-//
 
 import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selection: Int = 1
+//    @State private var selection: Int = 1
+    
+    @EnvironmentObject var stateManager: StateManager
     
     var body: some View {
-        TabView (selection: $selection) {
+        TabView (selection: $stateManager.selection) {
             
             FirstTabView()
                 .tabItem { Text("First") }
@@ -29,5 +29,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(StateManager())
     }
 }
